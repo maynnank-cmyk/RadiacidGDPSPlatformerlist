@@ -56,7 +56,7 @@
         header {
             background: var(--header-blue);
             border-bottom: 1px solid var(--header-blue);
-            padding: 1rem 0;
+            padding: 1rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -67,6 +67,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 1rem;
         }
         
         .logo {
@@ -83,44 +84,53 @@
         }
         
         .theme-toggle {
-            background: rgba(255,255,255,0.2);
+            background: none;
             border: none;
-            border-radius: 20px;
-            padding: 0.5rem 1rem;
             color: white;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.875rem;
+            font-size: 1.5rem;
             transition: all 0.3s ease;
+            padding: 0.5rem;
         }
         
         .theme-toggle:hover {
-            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 0;
         }
         
         nav ul li a {
-            color: var(--text-primary);
+            color: white;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
             transition: all 0.2s;
-            background: white;
-            border: 1px solid white;
             font-size: 0.9rem;
+            position: relative;
         }
         
-        nav ul li a:hover,
-        nav ul li a.active {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border-color: var(--border-color);
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        nav ul li a.active::after {
+            transform: scaleX(1);
+        }
+        
+        nav ul li a:hover::after {
+            transform: scaleX(1);
         }
         
         /* Hero Section */
@@ -293,9 +303,9 @@
         }
         
         .demon-image {
-            width: 160px;
-            height: 90px;
-            border-radius: 6px;
+            width: 240px;
+            height: 135px;
+            border-radius: 8px;
             overflow: hidden;
             flex-shrink: 0;
             background: var(--bg-tertiary);
@@ -319,7 +329,7 @@
             justify-content: center;
             background: var(--bg-tertiary);
             color: var(--text-secondary);
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 800;
         }
         
@@ -335,7 +345,7 @@
         }
         
         .demon-name {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
@@ -343,12 +353,12 @@
         
         .demon-creator {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
         }
         
         .demon-points {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: var(--accent-green);
             min-width: 100px;
@@ -468,7 +478,7 @@
             }
             
             nav ul {
-                gap: 0.5rem;
+                gap: 0;
             }
             
             nav ul li a {
@@ -489,8 +499,8 @@
             
             .demon-image {
                 width: 100%;
-                max-width: 200px;
-                height: 112px;
+                max-width: 280px;
+                height: 157px;
             }
             
             .demon-info {
@@ -529,7 +539,11 @@
             
             .demon-image {
                 width: 100%;
-                height: 100px;
+                height: 140px;
+            }
+            
+            nav ul li a::after {
+                bottom: -0.5rem;
             }
         }
     </style>
@@ -541,7 +555,7 @@
                 <a href="index.html" class="logo">RadiacidGDPS</a>
                 <div class="header-controls">
                     <button class="theme-toggle" onclick="toggleTheme()">
-                        🌙 Тёмная тема
+                        🌙
                     </button>
                     <nav>
                         <ul>
@@ -634,9 +648,9 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            // Обновляем текст кнопки
+            // Обновляем иконку кнопки
             const themeButton = document.querySelector('.theme-toggle');
-            themeButton.textContent = newTheme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема';
+            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
         
         // Загружаем сохраненную тему
@@ -645,7 +659,7 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
             
             const themeButton = document.querySelector('.theme-toggle');
-            themeButton.textContent = savedTheme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема';
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
         // ========== AUTOMATIC RANKING SYSTEM ==========
@@ -655,21 +669,21 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                image: 'https://images.placeholders.tech/?width=160&height=90&text=Bloodbath&bgColor=ff6b6b&textColor=white',
+                image: 'https://images.placeholders.tech/?width=240&height=135&text=Bloodbath&bgColor=ff6b6b&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                image: 'https://images.placeholders.tech/?width=160&height=90&text=Cataclysm&bgColor=4ecdc4&textColor=white',
+                image: 'https://images.placeholders.tech/?width=240&height=135&text=Cataclysm&bgColor=4ecdc4&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
                 creator: 'Noobas',
-                image: 'https://images.placeholders.tech/?width=160&height=90&text=Sakupen+Hell&bgColor=45b7d1&textColor=white',
+                image: 'https://images.placeholders.tech/?width=240&height=135&text=Sakupen+Hell&bgColor=45b7d1&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             }
         ];
