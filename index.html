@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiacid GDPS</title>
+    <style>
+        :root {
+            --bg-primary: #1a0f0f;
+            --bg-secondary: #2a1515;
+            --bg-tertiary: #3a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #ffa500;
+            --accent-orange: #ff6b00;
+            --accent-purple: #8a2be2;
+            --accent-green: #00ff00;
+            --border-color: #ff4500;
+            --halloween-orange: #ff7518;
+            --halloween-purple: #8b00ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 117, 24, 0.05) 0%, transparent 50%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Halloween decorations */
+        .halloween-decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.1;
+            font-size: 24px;
+        }
+
+        .decoration-1 { top: 10%; left: 5%; }
+        .decoration-2 { top: 20%; right: 8%; }
+        .decoration-3 { bottom: 30%; left: 7%; }
+        .decoration-4 { bottom: 15%; right: 5%; }
+        .decoration-5 { top: 50%; left: 3%; }
+        
+        /* Animated background elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @keyframes spooky {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .floating-ghost {
+            position: fixed;
+            font-size: 30px;
+            animation: float 6s ease-in-out infinite, spooky 4s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        .ghost-1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .ghost-2 { top: 60%; right: 15%; animation-delay: 2s; }
+        .ghost-3 { bottom: 20%; left: 20%; animation-delay: 4s; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-bottom: 3px solid var(--border-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 5px 15px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+        }
+        
+        .logo span {
+            color: var(--accent-green);
+            text-shadow: 0 0 10px var(--accent-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+        
+        nav ul li a:hover {
+            color: var(--text-primary);
+            background: rgba(255, 107, 0, 0.2);
+            border-color: var(--border-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 21, 21, 0.9), rgba(58, 26, 26, 0.9)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232a1515"/><path d="M0 0L100 100M100 0L0 100" stroke="%23ff4500" stroke-width="1"/></svg>');
+            background-size: cover;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "🎃👻💀";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            font-size: 24px;
+            opacity: 0.1;
+            animation: spooky 3s ease-in-out infinite;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--halloween-orange), var(--accent-green), var(--halloween-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255, 117, 24, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 117, 24, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 117, 24, 0.8), 0 0 40px rgba(139, 0, 255, 0.6); }
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Search Section */
+        .search-section {
+            padding: 40px 0;
+            background: var(--bg-secondary);
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+        
+        .search-section::before {
+            content: "🕷️";
+            position: absolute;
+            top: 10px;
+            left: 5%;
+            font-size: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .search-section::after {
+            content: "🕸️";
+            position: absolute;
+            bottom: 10px;
+            right: 5%;
+            font-size: 20px;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 60px 18px 25px;
+            font-size: 16px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.2), 0 4px 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--halloween-orange);
+            font-size: 20px;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+        }
+        
+        .search-result-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        
+        .search-result-item:hover {
+            background: rgba(255, 107, 0, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .search-result-creator {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Demon List */
+        .demon-list {
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .list-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .list-header h2 {
+            font-size: 36px;
+            color: var(--halloween-orange);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .list-stats {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .demon-row {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            transition: all 0.4s;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            gap: 25px;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .demon-row:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(255, 107, 0, 0.4);
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            border-color: var(--accent-green);
+        }
+        
+        .demon-row::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .demon-row:hover::before {
+            left: 100%;
+        }
+        
+        .demon-rank {
+            font-size: 28px;
+            font-weight: bold;
+            width: 70px;
+            text-align: center;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .rank.top-1 {
+            color: gold;
+            text-shadow: 0 0 10px gold, 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .rank.top-3 {
+            color: silver;
+            text-shadow: 0 0 8px silver;
+        }
+        
+        .rank.top-10 {
+            color: #cd7f32;
+            text-shadow: 0 0 6px #cd7f32;
+        }
+        
+        .demon-image {
+            width: 240px;
+            height: 135px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .demon-image:hover {
+            border-color: var(--accent-green);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .demon-image:hover::after {
+            content: "👻";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .demon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .demon-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .demon-details {
+            flex: 1;
+        }
+        
+        .demon-name {
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .demon-name:hover {
+            background: rgba(255, 107, 0, 0.3);
+            color: var(--accent-green);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        }
+        
+        .demon-creator {
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .demon-creator:hover {
+            background: rgba(139, 0, 255, 0.2);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        
+        .demon-points {
+            font-size: 22px;
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-top: 8px;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        .points-info {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Refresh Button */
+        .refresh-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.6);
+            background: linear-gradient(45deg, var(--halloween-purple), var(--halloween-orange));
+        }
+
+        .refresh-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Status */
+        .sync-status {
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 16px;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sync-status.synced {
+            color: var(--accent-green);
+            border-left: 4px solid var(--accent-green);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-orange);
+            border-radius: 12px;
+            margin: 25px 0;
+            color: var(--accent-orange);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-top: 3px solid var(--border-color);
+            padding: 50px 0;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        footer::before {
+            content: "🦇 Happy Halloween! 🎃";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: var(--halloween-orange);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-green);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .demon-row {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+            
+            .demon-image {
+                width: 100%;
+                max-width: 320px;
+                height: 180px;
+            }
+            
+            .demon-rank {
+                width: auto;
+                margin-bottom: 15px;
+            }
+            
+            .demon-info {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .list-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .floating-ghost {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Halloween decorations -->
+    <div class="halloween-decoration decoration-1">🎃</div>
+    <div class="halloween-decoration decoration-2">👻</div>
+    <div class="halloween-decoration decoration-3">💀</div>
+    <div class="halloween-decoration decoration-4">🦇</div>
+    <div class="halloween-decoration decoration-5">🕷️</div>
+    
+    <div class="floating-ghost ghost-1">👻</div>
+    <div class="floating-ghost ghost-2">👻</div>
+    <div class="floating-ghost ghost-3">👻</div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">RadiacidGDPS<span>DemonList</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" style="color: var(--accent-green);">Главная</a></li>
+                        <li><a href="players.html">Топ игроков</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="rules.html">Правила</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Demon List 🎃</h1>
+            <p>Самые страшные и сложные уровни в Geometry Dash. С Halloween настроением!</p>
+        </div>
+    </section>
+    
+    <!-- Поиск демонов -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Ищи демонов по названию...">
+                <div class="search-icon">🕷️</div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="demon-list">
+        <div class="container">
+            <div class="list-header">
+                <h2>🎯 Топ Демонов</h2>
+                <div class="list-stats" id="listStats">
+                    Всего демонов: <span id="totalDemons">0</span> | Показано: <span id="shownDemons">0</span>
+                </div>
+            </div>
+
+            <!-- Кнопка обновления и статус -->
+            <button class="refresh-btn" onclick="refreshData()">
+                🔄 Обновить список демонов
+            </button>
+            
+            <div id="syncStatus" class="sync-status">
+                Загрузка данных...
+            </div>
+
+            <div id="errorContainer"></div>
+            
+            <div class="list-container" id="demonList">
+                <!-- Демоны будут добавлены автоматически через JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Geometry Dash Demon List</h3>
+                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash. Специальная Halloween версия!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Ссылки</h3>
+                    <a href="index.html">Главная</a>
+                    <a href="players.html">Топ игроков</a>
+                    <a href="news.html">Новости</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="rules.html">Правила</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <a href="contacts.html">Команда</a>
+                    <a href="#">Discord</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект. Все права принадлежат их соответствующим владельцам. 🎃</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== AUTOMATIC RANKING SYSTEM ==========
+        
+        // Демоны по умолчанию (резервные)
+        const defaultDemons = [
+            {
+                id: 'bloodbath',
+                name: 'Bloodbath',
+                creator: 'Riot & more',
+                image: 'https://via.placeholder.com/240x135/ff3333/ffffff?text=Bloodbath',
+                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            },
+            {
+                id: 'cataclysm',
+                name: 'Cataclysm',
+                creator: 'Ggb0y',
+                image: 'https://via.placeholder.com/240x135/3366ff/ffffff?text=Cataclysm',
+                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            },
+            {
+                id: 'sakupen-hell',
+                name: 'Sakupen Hell',
+                creator: 'Noobas',
+                image: 'https://via.placeholder.com/240x135/9933ff/ffffff?text=Sakupen+Hell',
+                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            }
+        ];
+
+        let demons = [];
+        let filteredDemons = [];
+
+        // ========== SEARCH SYSTEM ==========
+
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm.length === 0) {
+                    searchResults.style.display = 'none';
+                    filteredDemons = [...demons];
+                    renderDemons();
+                    return;
+                }
+                
+                // Фильтруем демонов по названию и создателю
+                const results = demons.filter(demon => 
+                    demon.name.toLowerCase().includes(searchTerm) || 
+                    demon.creator.toLowerCase().includes(searchTerm)
+                );
+                
+                displaySearchResults(results);
+                filteredDemons = results;
+                renderDemons();
+            });
+            
+            // Закрываем результаты поиска при клике вне поля
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+        
+        function displaySearchResults(results) {
+            const searchResults = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">😔 Демоны не найдены</div>';
+                searchResults.style.display = 'block';
+                return;
+            }
+            
+            searchResults.innerHTML = '';
+            
+            results.slice(0, 8).forEach(demon => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'search-result-item';
+                resultItem.innerHTML = `
+                    <div class="search-result-name">${demon.name}</div>
+                    <div class="search-result-creator">by ${demon.creator}</div>
+                `;
+                resultItem.addEventListener('click', function() {
+                    openDemonPage(demon.id);
+                });
+                searchResults.appendChild(resultItem);
+            });
+            
+            searchResults.style.display = 'block';
+        }
+
+        // ========== DATA MANAGEMENT ==========
+
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <strong>❌ Ошибка:</strong> ${message}
+                    <br><small>Проверьте консоль для подробностей</small>
+                </div>
+            `;
+        }
+
+        function calculatePointsByRank(rank) {
+            if (rank <= 50) {
+                return Math.max(1000 - (rank - 1) * 20, 300);
+            } else {
+                return Math.max(300 - (rank - 51) * 5, 5);
+            }
+        }
+
+        async function loadDataFromJSON() {
+            try {
+                console.log('📥 Загрузка данных из demons.json...');
+                
+                // Используем рабочий путь из проверки
+                const response = await fetch('data/demons.json');
+                if (!response.ok) throw new Error('Файл demons.json не найден');
+                
+                const data = await response.json();
+                
+                // Автоматически назначаем ранги по порядку
+                if (data.demons && Array.isArray(data.demons)) {
+                    demons = data.demons.map((demon, index) => ({
+                        ...demon,
+                        rank: index + 1
+                    }));
+                    
+                    filteredDemons = [...demons];
+                    
+                    console.log('✅ Данные загружены из demons.json:', demons.length);
+                    updateSyncStatus(`✅ Загружено ${demons.length} демонов`);
+                    return true;
+                } else {
+                    throw new Error('Неверный формат demons.json - отсутствует массив demons');
+                }
+                
+            } catch (error) {
+                console.error('❌ Ошибка загрузки:', error);
+                
+                // Используем демонов по умолчанию с автоматической нумерацией
+                demons = defaultDemons.map((demon, index) => ({
+                    ...demon,
+                    rank: index + 1
+                }));
+                
+                filteredDemons = [...demons];
+                
+                updateSyncStatus('❌ Используются стандартные демоны');
+                showError(error.message);
+                return false;
+            }
+        }
+
+        function updateSyncStatus(message) {
+            const statusElement = document.getElementById('syncStatus');
+            if (statusElement) {
+                statusElement.textContent = message;
+                statusElement.className = 'sync-status ' + (message.includes('✅') ? 'synced' : '');
+            }
+        }
+
+        // ========== RENDERING ==========
+
+        function renderDemons() {
+            const demonList = document.getElementById('demonList');
+            const totalDemons = document.getElementById('totalDemons');
+            const shownDemons = document.getElementById('shownDemons');
+            
+            if (!demonList) {
+                console.error('❌ Element demonList not found');
+                return;
+            }
+            
+            // Обновляем статистику
+            totalDemons.textContent = demons.length;
+            shownDemons.textContent = filteredDemons.length;
+            
+            demonList.innerHTML = '';
+            
+            if (filteredDemons.length === 0) {
+                demonList.innerHTML = `
+                    <div style="text-align: center; padding: 60px; color: var(--text-secondary);">
+                        <div style="font-size: 64px; margin-bottom: 20px;">🔍</div>
+                        <div style="font-size: 24px; margin-bottom: 15px;">Демоны не найдены</div>
+                        <div style="font-size: 16px;">Попробуйте изменить поисковый запрос</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Демоны уже отсортированы по rank (который назначен автоматически)
+            filteredDemons.forEach(demon => {
+                const points = calculatePointsByRank(demon.rank);
+                const rankClass = demon.rank === 1 ? 'top-1' : 
+                                demon.rank <= 3 ? 'top-3' : 
+                                demon.rank <= 10 ? 'top-10' : '';
+                
+                const demonRow = document.createElement('div');
+                demonRow.className = 'demon-row';
+                demonRow.innerHTML = `
+                    <div class="demon-rank ${rankClass}">${demon.rank}</div>
+                    <div class="demon-image" onclick="openVideo('${demon.id}')">
+                        <img src="${demon.image}" alt="${demon.name}" 
+                             onerror="this.style.display='none'; this.parentNode.querySelector('.image-placeholder').style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">${demon.name.charAt(0)}</div>
+                    </div>
+                    <div class="demon-info">
+                        <div class="demon-details">
+                            <div class="demon-name" onclick="openDemonPage('${demon.id}')">${demon.name}</div>
+                            <div class="demon-creator">by ${demon.creator}</div>
+                            <div class="demon-points">${points} pts</div>
+                            <div class="points-info">Автоматически по позиции #${demon.rank}</div>
+                        </div>
+                    </div>
+                `;
+                demonList.appendChild(demonRow);
+            });
+        }
+
+        // ========== UTILITY FUNCTIONS ==========
+
+        function openDemonPage(demonId) {
+            window.location.href = `demon.html?id=${demonId}`;
+        }
+
+        async function refreshData() {
+            await loadDataFromJSON();
+            renderDemons();
+            
+            // Анимация обновления
+            document.querySelectorAll('.demon-row').forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    row.style.transition = 'opacity 0.5s, transform 0.5s';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, index * 100);
+            });
+        }
+
+        function openVideo(demonId) {
+            const demon = demons.find(d => d.id === demonId);
+            if (demon && demon.videoUrl) {
+                window.open(demon.videoUrl, '_blank');
+            } else {
+                // Поиск на YouTube по названию демона
+                const demonName = demon ? demon.name : demonId;
+                window.open(`https://www.youtube.com/results?search_query=Geometry+Dash+${encodeURIComponent(demonName)}`, '_blank');
+            }
+        }
+
+        // ========== INITIALIZATION ==========
+
+        async function initializeData() {
+            console.log('🎮 Инициализация Geometry Dash Demon List...');
+            await loadDataFromJSON();
+            initializeSearch();
+            renderDemons();
+            
+            // Анимация появления
+            setTimeout(() => {
+                document.querySelectorAll('.demon-row').forEach((row, index) => {
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(-20px)';
+                    
+                    setTimeout(() => {
+                        row.style.transition = 'opacity 0.5s, transform 0.5s';
+                        row.style.opacity = '1';
+                        row.style.transform = 'translateX(0)';
+                    }, index * 100);
+                });
+            }, 100);
+        }
+
+        // Глобальные функции
+        window.refreshData = refreshData;
+        window.openVideo = openVideo;
+        window.openDemonPage = openDemonPage;
+
+        // Запуск при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeData();
+            console.log('✅ Halloween Demon List ready! 🎃');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
