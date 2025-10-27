@@ -4,18 +4,18 @@
       "id": "vladgmd",
       "name": "VladGMD",
       "avatar": "V",
-      "completedDemons": ["fanera"],
+      "completedDemons": ["sky"],
       "progress": {
-        "fanera": 100
+        "sky": 100
       }
     },
       {
-      "id": "technoknight",
-      "name": "TechnoKnight",
-      "avatar": "T",
-      "completedDemons": ["theoryofworld"],
+      "id": "robiks",
+      "name": "robiks",
+      "avatar": "R",
+      "completedDemons": ["dangerzone"],
       "progress": {
-        "theoryofworld": 100
+        "dangerzone": 100
       }
     }
   ]
