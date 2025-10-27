@@ -1,0 +1,28 @@
+{
+  "team": [
+    {
+      "id": "vladgmd",
+      "name": "VladGMD",
+      "avatar": "V",
+      "avatarImage": "images/vladgmd.png", 
+      "role": "Создатель листа",
+      "roleClass": "role-leader"
+    },
+    {
+      "id": "maskexe",
+      "name": "MaskEXE",
+      "avatar": "M",
+      "avatarImage": "images/maskexe.png", 
+      "role": "Создатель ГДПС",
+      "roleClass": "role-admin"
+    },
+    {
+      "id": "rybaej",
+      "name": "Рыьа ёж",
+      "avatar": "Р",
+      "avatarImage": "images/rybaesh.png", 
+      "role": "Администратор ГДПС",
+      "roleClass": "role-admin"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "players": [
+    {
+      "id": "vladgmd",
+      "name": "VladGMD",
+      "avatar": "V",
+      "completedDemons": ["fanera"],
+      "progress": {
+        "fanera": 100
+      }
+    },
+      {
+      "id": "technoknight",
+      "name": "TechnoKnight",
+      "avatar": "T",
+      "completedDemons": ["theoryofworld"],
+      "progress": {
+        "theoryofworld": 100
+      }
+    }
+  ]
+}
