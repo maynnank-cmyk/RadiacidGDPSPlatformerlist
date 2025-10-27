@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radiacid GDPS Platformer List</title>
+    <title>Radiacid GDPS</title>
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #111122;
-            --bg-tertiary: #1a1a2e;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0c0;
-            --accent-blue: #3366ff;
-            --accent-purple: #8a2be2;
-            --accent-green: #00cc66;
-            --border-color: #2a2a4a;
-            --card-bg: rgba(26, 26, 46, 0.8);
-            --header-bg: rgba(17, 17, 34, 0.95);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-blue: #007bff;
+            --accent-green: #28a745;
+            --border-color: #dee2e6;
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         * {
@@ -30,35 +28,6 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(51, 102, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Particles Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-        
-        .particle {
-            position: absolute;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
         }
         
         .container {
@@ -69,13 +38,13 @@
         
         /* Header */
         header {
-            background: var(--header-bg);
-            backdrop-filter: blur(10px);
+            background: var(--bg-primary);
             border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: var(--card-shadow);
         }
         
         .header-content {
@@ -85,131 +54,80 @@
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: var(--text-primary);
+            color: var(--accent-blue);
             text-decoration: none;
-            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 1.5rem;
         }
         
         nav ul li a {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            font-size: 14px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
         }
         
         nav ul li a:hover,
         nav ul li a.active {
-            color: var(--text-primary);
-            background: var(--card-bg);
-            border-color: var(--border-color);
+            background-color: var(--bg-secondary);
+            color: var(--accent-blue);
         }
         
         /* Hero Section */
         .hero {
-            padding: 100px 0 60px;
+            padding: 3rem 0;
             text-align: center;
-            position: relative;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent-blue), var(--accent-green), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
         }
         
         .hero p {
-            font-size: 18px;
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--accent-blue);
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-top: 5px;
-        }
-        
-        /* Search Section */
-        .search-section {
-            padding: 40px 0;
             max-width: 600px;
             margin: 0 auto;
         }
         
+        /* Search Section */
+        .search-section {
+            padding: 2rem 0;
+            background: var(--bg-primary);
+        }
+        
         .search-container {
+            max-width: 600px;
+            margin: 0 auto;
             position: relative;
         }
         
         .search-input {
             width: 100%;
-            padding: 16px 50px 16px 20px;
-            font-size: 16px;
-            background: var(--card-bg);
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 6px;
+            background: var(--bg-primary);
             color: var(--text-primary);
-            transition: all 0.3s;
         }
         
         .search-input:focus {
             outline: none;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 0 2px rgba(51, 102, 255, 0.2);
-        }
-        
-        .search-input::placeholder {
-            color: var(--text-secondary);
-        }
-        
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
         }
         
         .search-results {
@@ -217,26 +135,26 @@
             top: 100%;
             left: 0;
             right: 0;
-            background: var(--card-bg);
+            background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            margin-top: 10px;
+            border-radius: 6px;
+            margin-top: 0.5rem;
             max-height: 300px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--card-shadow);
         }
         
         .search-result-item {
-            padding: 15px 20px;
+            padding: 0.75rem 1rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s;
+            transition: background-color 0.2s;
         }
         
         .search-result-item:hover {
-            background: rgba(51, 102, 255, 0.1);
+            background-color: var(--bg-secondary);
         }
         
         .search-result-item:last-child {
@@ -246,171 +164,141 @@
         .search-result-name {
             font-weight: 600;
             color: var(--text-primary);
-            font-size: 14px;
         }
         
         .search-result-creator {
-            font-size: 12px;
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            margin-top: 2px;
+            margin-top: 0.25rem;
         }
         
         .no-results {
-            padding: 20px;
+            padding: 1rem;
             text-align: center;
             color: var(--text-secondary);
-            font-size: 14px;
         }
         
         /* Demon List */
         .demon-list {
-            padding: 40px 0;
+            padding: 2rem 0;
         }
         
-        .section-header {
-            margin-bottom: 30px;
+        .list-header {
+            margin-bottom: 2rem;
             text-align: center;
         }
         
-        .section-header h2 {
-            font-size: 32px;
+        .list-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
             color: var(--text-primary);
-            margin-bottom: 10px;
-            font-weight: 600;
         }
         
-        .section-header p {
+        .list-header p {
             color: var(--text-secondary);
-            font-size: 16px;
         }
         
         .list-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
         
-        .demon-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
+        .demon-row {
+            background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .demon-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .demon-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(51, 102, 255, 0.1), transparent);
-            transition: left 0.6s;
-        }
-        
-        .demon-card:hover::before {
-            left: 100%;
-        }
-        
-        .demon-header {
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .demon-row:hover {
+            border-color: var(--accent-blue);
+            box-shadow: var(--card-shadow);
+            transform: translateY(-1px);
         }
         
         .demon-rank {
-            font-size: 24px;
+            font-size: 1.25rem;
             font-weight: bold;
-            color: var(--text-secondary);
-            min-width: 40px;
+            width: 50px;
             text-align: center;
+            color: var(--text-secondary);
         }
         
         .rank.top-1 {
-            color: gold;
+            color: #ffd700;
         }
         
         .rank.top-3 {
-            color: silver;
+            color: #c0c0c0;
         }
         
         .rank.top-10 {
             color: #cd7f32;
         }
         
+        .demon-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .demon-details {
+            flex: 1;
+        }
+        
         .demon-name {
-            font-size: 20px;
+            font-size: 1.125rem;
             font-weight: 600;
             color: var(--text-primary);
-            flex: 1;
+            margin-bottom: 0.25rem;
         }
         
         .demon-creator {
             color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 0.875rem;
         }
         
         .demon-points {
-            font-size: 18px;
-            color: var(--accent-green);
+            font-size: 1rem;
             font-weight: 600;
-        }
-        
-        .demon-image {
-            width: 100%;
-            height: 120px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 15px;
-            background: var(--bg-tertiary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-            border: 1px solid var(--border-color);
+            color: var(--accent-green);
+            min-width: 80px;
+            text-align: right;
         }
         
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 30px auto;
-            padding: 12px 30px;
+            margin: 2rem auto;
+            padding: 0.75rem 2rem;
             background: var(--accent-blue);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
         }
         
         .refresh-btn:hover {
-            background: var(--accent-purple);
-            transform: translateY(-2px);
+            background: #0056b3;
         }
         
         /* Status */
         .sync-status {
             text-align: center;
-            padding: 15px;
-            background: var(--card-bg);
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 14px;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            margin: 1rem 0;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
         }
@@ -418,47 +306,45 @@
         .sync-status.synced {
             color: var(--accent-green);
             border-color: var(--accent-green);
+            background: #d4edda;
         }
         
         .error-message {
             text-align: center;
-            padding: 20px;
-            background: var(--card-bg);
-            border: 1px solid #ff4444;
-            border-radius: 8px;
-            margin: 20px 0;
-            color: #ff4444;
-            font-size: 14px;
+            padding: 1rem;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            margin: 1rem 0;
+            color: #721c24;
         }
         
         /* Footer */
         footer {
-            background: var(--header-bg);
+            background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 40px 0;
-            margin-top: 60px;
+            padding: 2rem 0;
+            margin-top: 3rem;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            gap: 2rem;
         }
         
         .footer-section h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
-            font-weight: 600;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             display: block;
             text-decoration: none;
-            transition: all 0.3s;
-            font-size: 14px;
+            transition: color 0.2s;
         }
         
         .footer-section a:hover {
@@ -467,69 +353,69 @@
         
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 2rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            font-size: 12px;
-            margin-top: 30px;
+            margin-top: 2rem;
+            font-size: 0.875rem;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                gap: 15px;
+                gap: 1rem;
             }
             
             nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
+                gap: 1rem;
             }
             
             .hero h1 {
-                font-size: 36px;
+                font-size: 2rem;
             }
             
-            .stats {
-                gap: 20px;
+            .demon-row {
+                padding: 1rem;
+                gap: 1rem;
             }
             
-            .stat-number {
-                font-size: 28px;
+            .demon-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
             
-            .list-container {
+            .demon-points {
+                text-align: left;
+            }
+            
+            .footer-content {
                 grid-template-columns: 1fr;
-            }
-            
-            .demon-card {
-                padding: 15px;
             }
         }
         
         @media (max-width: 480px) {
             .hero {
-                padding: 80px 0 40px;
+                padding: 2rem 0;
             }
             
             .hero h1 {
-                font-size: 28px;
+                font-size: 1.75rem;
             }
             
-            .hero p {
-                font-size: 16px;
+            .list-header h2 {
+                font-size: 1.5rem;
             }
             
-            .search-section {
-                padding: 20px 0;
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Particles Background -->
-    <div class="particles" id="particles"></div>
-    
     <header>
         <div class="container">
             <div class="header-content">
@@ -549,23 +435,8 @@
     
     <section class="hero">
         <div class="container">
-            <h1>Platformer List</h1>
-            <p>Рейтинг самых сложных уровней платформер в Geometry Dash. Отслеживайте прогресс, соревнуйтесь с другими игроками и покоряйте вершины!</p>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" id="totalDemons">0</span>
-                    <span class="stat-label">Демонов в списке</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="totalPlayers">0</span>
-                    <span class="stat-label">Активных игроков</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="totalCompletions">0</span>
-                    <span class="stat-label">Пройдено демонов</span>
-                </div>
-            </div>
+            <h1>Demon List</h1>
+            <p>Рейтинг самых сложных уровней в Geometry Dash</p>
         </div>
     </section>
     
@@ -573,7 +444,6 @@
         <div class="container">
             <div class="search-container">
                 <input type="text" id="searchInput" class="search-input" placeholder="Поиск демонов по названию или создателю...">
-                <div class="search-icon">🔍</div>
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -581,7 +451,7 @@
     
     <section class="demon-list">
         <div class="container">
-            <div class="section-header">
+            <div class="list-header">
                 <h2>Топ Демонов</h2>
                 <p>Самые сложные уровни, отсортированные по рейтингу</p>
             </div>
@@ -638,55 +508,24 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                image: 'https://via.placeholder.com/350x120/1a1a2e/3366ff?text=Bloodbath',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                image: 'https://via.placeholder.com/350x120/1a1a2e/00cc66?text=Cataclysm',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
                 creator: 'Noobas',
-                image: 'https://via.placeholder.com/350x120/1a1a2e/8a2be2?text=Sakupen+Hell',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             }
         ];
 
         let demons = [];
         let filteredDemons = [];
-
-        // ========== PARTICLES BACKGROUND ==========
-
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 15;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const size = Math.random() * 4 + 1;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 3 + 3;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.opacity = Math.random() * 0.3 + 0.1;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
 
         // ========== SEARCH SYSTEM ==========
 
@@ -741,6 +580,7 @@
                 `;
                 resultItem.addEventListener('click', function() {
                     openDemonPage(demon.id);
+                    searchResults.style.display = 'none';
                 });
                 searchResults.appendChild(resultItem);
             });
@@ -786,7 +626,6 @@
                     
                     console.log('✅ Данные загружены из demons.json:', demons.length);
                     updateSyncStatus(`Загружено ${demons.length} демонов`);
-                    updateStats();
                     return true;
                 } else {
                     throw new Error('Неверный формат demons.json - отсутствует массив demons');
@@ -804,7 +643,6 @@
                 
                 updateSyncStatus('Используются стандартные демоны');
                 showError(error.message);
-                updateStats();
                 return false;
             }
         }
@@ -815,13 +653,6 @@
                 statusElement.textContent = message;
                 statusElement.className = 'sync-status ' + (message.includes('Загружено') ? 'synced' : '');
             }
-        }
-
-        function updateStats() {
-            document.getElementById('totalDemons').textContent = demons.length;
-            // Эти значения можно будет обновить после загрузки players.json
-            document.getElementById('totalPlayers').textContent = '0';
-            document.getElementById('totalCompletions').textContent = '0';
         }
 
         // ========== RENDERING ==========
@@ -838,10 +669,10 @@
             
             if (filteredDemons.length === 0) {
                 demonList.innerHTML = `
-                    <div style="text-align: center; padding: 60px; color: var(--text-secondary); grid-column: 1 / -1;">
-                        <div style="font-size: 48px; margin-bottom: 20px;">🔍</div>
-                        <div style="font-size: 18px; margin-bottom: 10px;">Демоны не найдены</div>
-                        <div style="font-size: 14px;">Попробуйте изменить поисковый запрос</div>
+                    <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">Демоны не найдены</div>
+                        <div>Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -853,26 +684,20 @@
                                 demon.rank <= 3 ? 'top-3' : 
                                 demon.rank <= 10 ? 'top-10' : '';
                 
-                const demonCard = document.createElement('div');
-                demonCard.className = 'demon-card';
-                demonCard.onclick = () => openDemonPage(demon.id);
-                demonCard.innerHTML = `
-                    <div class="demon-header">
-                        <div class="demon-rank ${rankClass}">${demon.rank}</div>
-                        <div style="flex: 1;">
+                const demonRow = document.createElement('div');
+                demonRow.className = 'demon-row';
+                demonRow.onclick = () => openDemonPage(demon.id);
+                demonRow.innerHTML = `
+                    <div class="demon-rank ${rankClass}">${demon.rank}</div>
+                    <div class="demon-info">
+                        <div class="demon-details">
                             <div class="demon-name">${demon.name}</div>
                             <div class="demon-creator">by ${demon.creator}</div>
-                            <div class="demon-points">${points} pts</div>
                         </div>
-                    </div>
-                    <div class="demon-image">
-                        ${demon.image ? 
-                            `<img src="${demon.image}" alt="${demon.name}" style="width: 100%; height: 100%; object-fit: cover;">` :
-                            demon.name
-                        }
+                        <div class="demon-points">${points} pts</div>
                     </div>
                 `;
-                demonList.appendChild(demonCard);
+                demonList.appendChild(demonRow);
             });
         }
 
@@ -886,15 +711,15 @@
             await loadDataFromJSON();
             renderDemons();
             
-            document.querySelectorAll('.demon-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
+            document.querySelectorAll('.demon-row').forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateX(-20px)';
                 
                 setTimeout(() => {
-                    card.style.transition = 'opacity 0.5s, transform 0.5s';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
+                    row.style.transition = 'opacity 0.3s, transform 0.3s';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateX(0)';
+                }, index * 50);
             });
         }
 
@@ -902,21 +727,20 @@
 
         async function initializeData() {
             console.log('🎮 Инициализация Geometry Dash Demon List...');
-            createParticles();
             await loadDataFromJSON();
             initializeSearch();
             renderDemons();
             
             setTimeout(() => {
-                document.querySelectorAll('.demon-card').forEach((card, index) => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
+                document.querySelectorAll('.demon-row').forEach((row, index) => {
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(-20px)';
                     
                     setTimeout(() => {
-                        card.style.transition = 'opacity 0.5s, transform 0.5s';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 100);
+                        row.style.transition = 'opacity 0.3s, transform 0.3s';
+                        row.style.opacity = '1';
+                        row.style.transform = 'translateX(0)';
+                    }, index * 50);
                 });
             }, 100);
         }
@@ -933,4 +757,3 @@
     </script>
 </body>
 </html>
-
