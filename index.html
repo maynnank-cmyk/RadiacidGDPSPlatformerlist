@@ -11,11 +11,24 @@
             --bg-tertiary: #e9ecef;
             --text-primary: #212529;
             --text-secondary: #6c757d;
-            --accent-blue: #007bff;
+            --accent-blue: #0056b3;
             --accent-green: #28a745;
             --border-color: #dee2e6;
-            --card-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            --header-blue: #007bff;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --header-blue: #0056b3;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-blue: #4d8fe5;
+            --accent-green: #34c759;
+            --border-color: #404040;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            --header-blue: #003d82;
         }
         
         * {
@@ -29,6 +42,8 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
         
         .container {
@@ -45,7 +60,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
         .header-content {
@@ -56,9 +71,31 @@
         
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 800;
             color: white;
             text-decoration: none;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
         }
         
         nav ul {
@@ -70,12 +107,13 @@
         nav ul li a {
             color: var(--text-primary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
             padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: all 0.2s;
             background: white;
             border: 1px solid white;
+            font-size: 0.9rem;
         }
         
         nav ul li a:hover,
@@ -97,6 +135,7 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            font-weight: 800;
         }
         
         .hero p {
@@ -104,6 +143,7 @@
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
+            font-weight: 600;
         }
         
         /* Search Section */
@@ -126,6 +166,7 @@
             border-radius: 6px;
             background: var(--bg-primary);
             color: var(--text-primary);
+            font-weight: 600;
         }
         
         .search-input:focus {
@@ -166,7 +207,7 @@
         }
         
         .search-result-name {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
         }
         
@@ -174,12 +215,14 @@
             font-size: 0.875rem;
             color: var(--text-secondary);
             margin-top: 0.25rem;
+            font-weight: 600;
         }
         
         .no-results {
             padding: 1rem;
             text-align: center;
             color: var(--text-secondary);
+            font-weight: 600;
         }
         
         /* Demon List */
@@ -196,40 +239,43 @@
             font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
+            font-weight: 800;
         }
         
         .list-header p {
             color: var(--text-secondary);
+            font-weight: 600;
         }
         
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
         }
         
         .demon-row {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1rem 1.5rem;
+            padding: 1.5rem;
             display: flex;
             align-items: center;
             gap: 1.5rem;
             transition: all 0.2s;
             cursor: pointer;
+            box-shadow: var(--card-shadow);
         }
         
         .demon-row:hover {
             border-color: var(--accent-blue);
-            box-shadow: var(--card-shadow);
-            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
         }
         
         .demon-rank {
-            font-size: 1.25rem;
-            font-weight: bold;
-            width: 50px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            width: 60px;
             text-align: center;
             color: var(--text-secondary);
         }
@@ -247,15 +293,16 @@
         }
         
         .demon-image {
-            width: 80px;
-            height: 45px;
-            border-radius: 4px;
+            width: 160px;
+            height: 90px;
+            border-radius: 6px;
             overflow: hidden;
             flex-shrink: 0;
             background: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid var(--border-color);
         }
         
         .demon-image img {
@@ -272,8 +319,8 @@
             justify-content: center;
             background: var(--bg-tertiary);
             color: var(--text-secondary);
-            font-size: 0.75rem;
-            font-weight: 500;
+            font-size: 1.5rem;
+            font-weight: 800;
         }
         
         .demon-info {
@@ -288,22 +335,23 @@
         }
         
         .demon-name {
-            font-size: 1.125rem;
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
         
         .demon-creator {
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            font-size: 1rem;
+            font-weight: 600;
         }
         
         .demon-points {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.125rem;
+            font-weight: 800;
             color: var(--accent-green);
-            min-width: 80px;
+            min-width: 100px;
             text-align: right;
         }
         
@@ -318,12 +366,13 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 1rem;
-            font-weight: 500;
-            transition: background-color 0.2s;
+            font-weight: 700;
+            transition: all 0.2s;
         }
         
         .refresh-btn:hover {
-            background: #0056b3;
+            background: #004494;
+            transform: translateY(-1px);
         }
         
         /* Status */
@@ -335,12 +384,13 @@
             margin: 1rem 0;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
+            font-weight: 600;
         }
         
         .sync-status.synced {
             color: var(--accent-green);
             border-color: var(--accent-green);
-            background: #d4edda;
+            background: var(--bg-primary);
         }
         
         .error-message {
@@ -351,6 +401,13 @@
             border-radius: 6px;
             margin: 1rem 0;
             color: #721c24;
+            font-weight: 600;
+        }
+        
+        [data-theme="dark"] .error-message {
+            background: #5c2a2a;
+            border-color: #7a3a3a;
+            color: #ffb3b3;
         }
         
         /* Footer */
@@ -371,6 +428,7 @@
             font-size: 1.125rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
@@ -379,6 +437,7 @@
             display: block;
             text-decoration: none;
             transition: color 0.2s;
+            font-weight: 600;
         }
         
         .footer-section a:hover {
@@ -392,6 +451,7 @@
             color: var(--text-secondary);
             margin-top: 2rem;
             font-size: 0.875rem;
+            font-weight: 600;
         }
         
         /* Responsive */
@@ -399,6 +459,12 @@
             .header-content {
                 flex-direction: column;
                 gap: 1rem;
+            }
+            
+            .header-controls {
+                order: -1;
+                width: 100%;
+                justify-content: space-between;
             }
             
             nav ul {
@@ -417,21 +483,25 @@
             .demon-row {
                 padding: 1rem;
                 gap: 1rem;
+                flex-direction: column;
+                text-align: center;
             }
             
             .demon-image {
-                width: 60px;
-                height: 34px;
+                width: 100%;
+                max-width: 200px;
+                height: 112px;
             }
             
             .demon-info {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 gap: 0.5rem;
+                width: 100%;
             }
             
             .demon-points {
-                text-align: left;
+                text-align: center;
             }
             
             .footer-content {
@@ -458,12 +528,8 @@
             }
             
             .demon-image {
-                width: 50px;
-                height: 28px;
-            }
-            
-            .image-placeholder {
-                font-size: 0.6rem;
+                width: 100%;
+                height: 100px;
             }
         }
     </style>
@@ -473,15 +539,20 @@
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">RadiacidGDPS</a>
-                <nav>
-                    <ul>
-                        <li><a href="index.html" class="active">Главная</a></li>
-                        <li><a href="players.html">Топ игроков</a></li>
-                        <li><a href="news.html">Новости</a></li>
-                        <li><a href="contacts.html">Контакты</a></li>
-                        <li><a href="rules.html">Правила</a></li>
-                    </ul>
-                </nav>
+                <div class="header-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        🌙 Тёмная тема
+                    </button>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html" class="active">Главная</a></li>
+                            <li><a href="players.html">Топ игроков</a></li>
+                            <li><a href="news.html">Новости</a></li>
+                            <li><a href="contacts.html">Контакты</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
@@ -554,6 +625,29 @@
     </footer>
 
     <script>
+        // ========== THEME TOGGLE ==========
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Обновляем текст кнопки
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = newTheme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема';
+        }
+        
+        // Загружаем сохраненную тему
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️ Светлая тема' : '🌙 Тёмная тема';
+        }
+
         // ========== AUTOMATIC RANKING SYSTEM ==========
         
         const defaultDemons = [
@@ -561,21 +655,21 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                image: 'https://images.placeholders.tech/?width=80&height=45&text=Bloodbath&bgColor=ff6b6b&textColor=white',
+                image: 'https://images.placeholders.tech/?width=160&height=90&text=Bloodbath&bgColor=ff6b6b&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                image: 'https://images.placeholders.tech/?width=80&height=45&text=Cataclysm&bgColor=4ecdc4&textColor=white',
+                image: 'https://images.placeholders.tech/?width=160&height=90&text=Cataclysm&bgColor=4ecdc4&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
                 creator: 'Noobas',
-                image: 'https://images.placeholders.tech/?width=80&height=45&text=Sakupen+Hell&bgColor=45b7d1&textColor=white',
+                image: 'https://images.placeholders.tech/?width=160&height=90&text=Sakupen+Hell&bgColor=45b7d1&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             }
         ];
@@ -727,8 +821,8 @@
                 demonList.innerHTML = `
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem;">Демоны не найдены</div>
-                        <div>Попробуйте изменить поисковый запрос</div>
+                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Демоны не найдены</div>
+                        <div style="font-weight: 600;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -789,6 +883,7 @@
 
         async function initializeData() {
             console.log('🎮 Инициализация Geometry Dash Demon List...');
+            loadTheme();
             await loadDataFromJSON();
             initializeSearch();
             renderDemons();
@@ -810,6 +905,7 @@
         // Глобальные функции
         window.refreshData = refreshData;
         window.openDemonPage = openDemonPage;
+        window.toggleTheme = toggleTheme;
 
         // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
