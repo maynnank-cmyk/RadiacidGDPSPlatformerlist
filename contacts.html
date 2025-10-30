@@ -1,52 +1,713 @@
-{
-  "team": [
-    {
-      "id": "1",
-      "name": "Radiacid",
-      "role": "Основатель",
-      "roleClass": "role-leader",
-      "avatar": "👑",
-      "avatarImage": ""
-    },
-    {
-      "id": "2",
-      "name": "Shadow",
-      "role": "Главный модератор",
-      "roleClass": "role-admin",
-      "avatar": "⚡",
-      "avatarImage": ""
-    },
-    {
-      "id": "3", 
-      "name": "Nebula",
-      "role": "Модератор",
-      "roleClass": "role-moderator",
-      "avatar": "🌟",
-      "avatarImage": ""
-    },
-    {
-      "id": "4",
-      "name": "Vector",
-      "role": "Модератор",
-      "roleClass": "role-moderator", 
-      "avatar": "🎯",
-      "avatarImage": ""
-    },
-    {
-      "id": "5",
-      "name": "Echo",
-      "role": "Помощник",
-      "roleClass": "role-helper",
-      "avatar": "🔊",
-      "avatarImage": ""
-    },
-    {
-      "id": "6",
-      "name": "Phoenix",
-      "role": "Помощник", 
-      "roleClass": "role-helper",
-      "avatar": "🔥",
-      "avatarImage": ""
-    }
-  ]
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Radiacid GDPS</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-blue: #0056b3;
+            --accent-green: #28a745;
+            --border-color: #dee2e6;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --header-blue: #0056b3;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-blue: #4d8fe5;
+            --accent-green: #34c759;
+            --border-color: #404040;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            --header-blue: #003d82;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--header-blue);
+            border-bottom: 1px solid var(--header-blue);
+            padding: 1rem 0 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        nav ul li a.active::after {
+            transform: scaleX(1);
+        }
+        
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+        
+        /* Contacts Section */
+        .contacts-section {
+            padding: 3rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        
+        .section-header p {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        .moderators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .moderator-card {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .moderator-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .moderator-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border: 3px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .moderator-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        
+        .moderator-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        
+        .moderator-role {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .role-leader {
+            background: linear-gradient(45deg, var(--accent-blue), #ff6b6b);
+        }
+        
+        .role-admin {
+            background: linear-gradient(45deg, var(--accent-blue), #c56cf0);
+        }
+        
+        .role-moderator {
+            background: linear-gradient(45deg, var(--accent-green), #67ff67);
+        }
+        
+        .role-helper {
+            background: linear-gradient(45deg, #ffa500, #ffd700);
+        }
+        
+        /* Refresh Button */
+        .refresh-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.75rem 2rem;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        
+        .refresh-btn:hover {
+            background: #004494;
+            transform: translateY(-1px);
+        }
+        
+        /* Status */
+        .sync-status {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+        
+        .sync-status.synced {
+            color: var(--accent-green);
+            border-color: var(--accent-green);
+            background: var(--bg-primary);
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 1rem;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            margin: 1rem 0;
+            color: #721c24;
+            font-weight: 600;
+        }
+        
+        [data-theme="dark"] .error-message {
+            background: #5c2a2a;
+            border-color: #7a3a3a;
+            color: #ffb3b3;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            grid-column: 1 / -1;
+        }
+        
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 600;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .header-controls {
+                order: -1;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            nav ul {
+                gap: 0;
+            }
+            
+            nav ul li a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+            
+            .moderators-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .moderator-card {
+                padding: 1.5rem;
+            }
+            
+            .moderator-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .avatar-placeholder {
+                font-size: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .moderators-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .moderator-card {
+                padding: 1rem;
+            }
+            
+            nav ul li a::after {
+                bottom: -0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">RadiacidGDPS</a>
+                <div class="header-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        🌙
+                    </button>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="players.html">Топ игроков</a></li>
+                            <li><a href="news.html">Новости</a></li>
+                            <li><a href="contacts.html" class="active">Контакты</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Контакты</h1>
+            <p>Команда модераторов EternalGDPS DemonList</p>
+        </div>
+    </section>
+    
+    <section class="contacts-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>👥 Наша команда</h2>
+                <p>Модераторы и администраторы Demon List</p>
+            </div>
+            
+            <button class="refresh-btn" onclick="refreshData()">
+                🔄 Обновить список команды
+            </button>
+            
+            <div id="syncStatus" class="sync-status">
+                Загрузка данных...
+            </div>
+            
+            <div id="errorContainer"></div>
+            
+            <div class="moderators-grid" id="teamGrid">
+                <!-- Команда будет загружена через JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Geometry Dash Demon List</h3>
+                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <a href="index.html">Главная</a>
+                    <a href="players.html">Топ игроков</a>
+                    <a href="news.html">Новости</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="rules.html">Правила</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Сообщество</h3>
+                    <a href="#">Discord</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== THEME TOGGLE ==========
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // ========== TEAM DATA SYSTEM ==========
+        
+        let teamMembers = [];
+
+        // ========== DATA MANAGEMENT ==========
+
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <strong>Ошибка:</strong> ${message}
+                </div>
+            `;
+        }
+
+        async function loadTeamFromJSON() {
+            try {
+                console.log('📥 Загрузка команды из team.json...');
+                
+                const response = await fetch('data/team.json');
+                if (!response.ok) throw new Error('Файл team.json не найден');
+                
+                const data = await response.json();
+                
+                if (data.team && Array.isArray(data.team)) {
+                    teamMembers = data.team;
+                    console.log('✅ Команда загружена из team.json:', teamMembers.length);
+                    return true;
+                } else {
+                    throw new Error('Неверный формат team.json - отсутствует массив team');
+                }
+                
+            } catch (error) {
+                console.error('❌ Ошибка загрузки команды:', error);
+                showError('Ошибка загрузки команды: ' + error.message);
+                return false;
+            }
+        }
+
+        function updateSyncStatus(message) {
+            const statusElement = document.getElementById('syncStatus');
+            if (statusElement) {
+                statusElement.textContent = message;
+                statusElement.className = 'sync-status ' + (message.includes('✅') ? 'synced' : '');
+            }
+        }
+
+        // ========== RENDERING ==========
+
+        function renderTeam() {
+            const teamGrid = document.getElementById('teamGrid');
+            if (!teamGrid) {
+                console.error('❌ Element teamGrid not found');
+                return;
+            }
+            
+            teamGrid.innerHTML = '';
+            
+            if (teamMembers.length === 0) {
+                teamGrid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">😔</div>
+                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Команда не найдена</div>
+                        <div style="font-weight: 600;">Проверьте файл data/team.json</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            teamMembers.forEach(member => {
+                const memberCard = document.createElement('div');
+                memberCard.className = 'moderator-card';
+                
+                memberCard.innerHTML = `
+                    <div class="moderator-avatar">
+                        ${member.avatarImage ? 
+                            `<img src="${member.avatarImage}" alt="${member.name}" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\\'avatar-placeholder\\'>${member.avatar || member.name.charAt(0)}</div>'">` :
+                            `<div class="avatar-placeholder">${member.avatar || member.name.charAt(0)}</div>`
+                        }
+                    </div>
+                    <h3 class="moderator-name">${member.name}</h3>
+                    <div class="moderator-role ${member.roleClass || 'role-moderator'}">${member.role}</div>
+                `;
+                
+                teamGrid.appendChild(memberCard);
+            });
+        }
+
+        // ========== UTILITY FUNCTIONS ==========
+
+        async function refreshData() {
+            console.log('🔄 Обновление данных команды...');
+            await loadTeamFromJSON();
+            renderTeam();
+            updateSyncStatus(`✅ Загружено ${teamMembers.length} членов команды`);
+            
+            document.querySelectorAll('.moderator-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.3s, transform 0.3s';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // ========== INITIALIZATION ==========
+
+        async function initializeData() {
+            console.log('🎮 Инициализация страницы контактов...');
+            loadTheme();
+            await loadTeamFromJSON();
+            renderTeam();
+            updateSyncStatus(`✅ Загружено ${teamMembers.length} членов команды`);
+            
+            setTimeout(() => {
+                document.querySelectorAll('.moderator-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.3s, transform 0.3s';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 100);
+        }
+
+        // Глобальные функции
+        window.refreshData = refreshData;
+        window.toggleTheme = toggleTheme;
+
+        // Запуск при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Contacts.html загружен, начинаем инициализацию...');
+            initializeData();
+        });
+    </script>
+</body>
+</html>
